@@ -1,0 +1,148 @@
+/* components/Navbar.module.css */
+.nav {
+    background-color: #2563eb;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    position: relative;
+  }
+  
+  .navContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  
+  /* Menu Desktop */
+  .desktopMenu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Bouton Hamburger */
+  .menuButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    padding: 0.5rem;
+  }
+  
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+  
+  .hamburgerLine {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  
+  .hamburgerOpen .hamburgerLine:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .hamburgerOpen .hamburgerLine:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburgerOpen .hamburgerLine:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Menu Mobile */
+  .mobileMenu {
+    display: block;
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #2563eb;
+    margin: 0;
+    padding: 0 1rem;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 100;
+  }
+  
+  .mobileMenuVisible {
+    max-height: 300px; /* Valeur suffisamment grande pour le contenu */
+    padding: 1rem;
+  }
+  
+  .mobileMenu li {
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .mobileMenuVisible li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .mobileMenu li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  
+  .mobileMenu li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  
+  .mobileMenu li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  
+  /* Styles communs pour les liens */
+  .navLink {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+  }
+  
+  .navLink:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .activeLink {
+    composes: navLink;
+    background-color: #1e40af;
+    font-weight: bold;
+  }
+  
+  /* Media Query pour les petits écrans */
+  @media (max-width: 768px) {
+    .desktopMenu {
+      display: none;
+    }
+  
+    .menuButton {
+      display: block;
+    }
+  }
