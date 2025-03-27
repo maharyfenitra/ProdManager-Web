@@ -12,18 +12,18 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { useCategoryDetailsForm } from "./hooks/useCategoryDetaisForm";
+import { useUpdateDetailsForm } from "./hooks/useUpdateDetaisForm";
 
-export const CategoryDetailsForm = () => {
+export const UpdateDetailsForm = () => {
   const { handleSubmit, handleChange, back, handleSelectParentCategoryChange, collection, formData } =
-    useCategoryDetailsForm();
+    useUpdateDetailsForm();
 
   return (
     <Box maxW="md" mx="auto" mt={8} p={4} borderWidth="1px" borderRadius="lg">
       <Box divideY="2px">
         <Box>
           <Text textStyle="lg">
-            Formulaire de création d&apos;une nouvelle category
+            Mettre à jour la category
           </Text>
         </Box>
         <Box>
@@ -89,7 +89,7 @@ export const CategoryDetailsForm = () => {
               {/* Boutons */}
               <VStack gap={3} w="full">
                 <Button type="submit" colorScheme="blue" w="full">
-                  Créer la catégorie
+                  Mettre à jour
                 </Button>
                 <Button colorScheme="gray" w="full" onClick={() => back()}>
                   Retour

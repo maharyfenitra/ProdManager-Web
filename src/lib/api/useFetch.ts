@@ -8,8 +8,6 @@ export const useFetch = () => {
     headers = {}
   ) => {
 
-    console.log(endpoint);
-    //try {
     let response;
 
     switch (method.toUpperCase()) {

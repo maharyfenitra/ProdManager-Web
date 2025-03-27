@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useGetAllCategories } from "@/lib/api/queries/products/useGetAllCategories";
+import { useGetAllCategories } from "@/lib/api/queries/categories/useGetAllCategories";
 const Page = () => {
   const { data, isLoading } = useGetAllCategories();
 

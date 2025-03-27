@@ -1,3 +1,4 @@
+import { CategoryType } from "./type";
 import { useGenericQuery } from "../../useGenericQuery";
 
 export const useGetAllCategories = () => {
@@ -14,9 +15,4 @@ export const useGetAllCategories = () => {
   );
 };
 
-export type CategoryType = {
-  id: number;
-  parentId: number | null;
-  name: string;
-  description: string | null;
-};
+

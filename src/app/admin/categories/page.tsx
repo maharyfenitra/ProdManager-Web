@@ -1,21 +1,12 @@
 "use client";
 import { Button } from "@chakra-ui/react";
-import { useEffect } from "react";
-import {
-  useGetAllCategories,
-  CategoryType,
-} from "@/lib/api/queries/products/useGetAllCategories";
+import { useGetAllCategories, CategoryType } from "@/lib/api";
 import { Table } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { CategorySearchForm } from "./components/CategorySearchForm";
 const Page = () => {
-  const { data, isLoading } = useGetAllCategories();
+  const { data } = useGetAllCategories();
   const { push } = useRouter();
-
-  useEffect(() => {
-    console.log(data);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
 
   return (
     <>
@@ -31,7 +22,7 @@ const Page = () => {
           </Table.Header>
           <Table.Body>
             {data.map((category: CategoryType, index: number) => {
-              console.log(index);
+              
               return (
                 <Table.Row key={index}>
                   <Table.Cell>{category.name}</Table.Cell>

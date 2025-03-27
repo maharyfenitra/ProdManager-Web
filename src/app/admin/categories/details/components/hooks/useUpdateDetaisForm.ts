@@ -5,17 +5,22 @@ import {
   useGetAllCategories,
   CategoryType,
 } from "@/lib/api/";
+import { useGetCategoryQuery } from "@/lib/api";
 
-import { useCreateCategoryMutation } from "@/lib/api/mutations/categories";
+import { useUpdateCategoryMutation } from "@/lib/api/";
 
 import { useEffect } from "react";
 import { ListCollection } from "@chakra-ui/react";
-export const useCategoryDetailsForm = () => {
+import { useParams } from "next/navigation";
+export const useUpdateDetailsForm = () => {
 
   const { data } = useGetAllCategories();
   const [collection, setCollection] = useState<ListCollection | null>(null);
   const [parentId, setParentId] = useState<number | null>(null)
-  const { mutate } = useCreateCategoryMutation()
+  const params = useParams();
+  const id = params?.id;
+  const { data: details } = useGetCategoryQuery(Number(id))
+  const { mutate } = useUpdateCategoryMutation(Number(id))
 
   useEffect(() => {
     if (data != null) {
@@ -30,8 +35,21 @@ export const useCategoryDetailsForm = () => {
     }
   }, [data]);
 
-  const router = useRouter();
+  useEffect(()=>{
+    console.log("====================================================")
+    console.log(id)
+    console.log(details)
+    setFormData({
+      name: details?.name || "",
+      description: details?.description || "",
+      parentId: ""
+    })
+  }, [id, details])
 
+  
+
+  const router = useRouter();
+  
   const [formData, setFormData] = useState({
     name: "",
     parentId: "",

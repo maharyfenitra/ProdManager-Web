@@ -1,6 +1,6 @@
 /* components/Navbar.module.css */
 .nav {
-    background-color: #2563eb;
+    background-color: #3a3b3d;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 1rem 0;
     position: relative;
@@ -77,12 +77,12 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #2563eb;
+    background-color: #3a3b3d;
     margin: 0;
     padding: 0 1rem;
     overflow: hidden;
     max-height: 0;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition: 100vh 0.3s ease, padding 0.3s ease;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     z-index: 100;
   }
@@ -132,7 +132,7 @@
   
   .activeLink {
     composes: navLink;
-    background-color: #1e40af;
+    background-color: #3a3b3d;
     font-weight: bold;
   }
   
