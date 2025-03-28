@@ -12,11 +12,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { useCategoryDetailsForm } from "./hooks/useCategoryDetaisForm";
+import { useCreateDetailsForm } from "./hooks/useCreateDetailsForm";
 
-export const CategoryDetailsForm = () => {
+export const CreateDetailsForm = () => {
   const { handleSubmit, handleChange, back, handleSelectParentCategoryChange, collection, formData } =
-    useCategoryDetailsForm();
+    useCreateDetailsForm();
 
   return (
     <Box maxW="md" mx="auto" mt={8} p={4} borderWidth="1px" borderRadius="lg">

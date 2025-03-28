@@ -1,8 +1,8 @@
-import { CategoryDetailsForm } from "./components/CategoryDetailsForm";
+import { CreateDetailsForm } from "./components/CreateDetailsForm";
 const Page = () => {
   return (
     <>
-      <CategoryDetailsForm />
+      <CreateDetailsForm />
     </>
   );
 };

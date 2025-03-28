@@ -10,7 +10,7 @@ import { useCreateCategoryMutation } from "@/lib/api/mutations/categories";
 
 import { useEffect } from "react";
 import { ListCollection } from "@chakra-ui/react";
-export const useCategoryDetailsForm = () => {
+export const useCreateDetailsForm = () => {
 
   const { data } = useGetAllCategories();
   const [collection, setCollection] = useState<ListCollection | null>(null);

@@ -1,9 +1,5 @@
+import { redirect } from "next/navigation";
 
-
-const Page =() =>{
-  return <>
-      
-  </>
+export default function Page() {
+  redirect("/admin/products");
 }
-
-export default Page

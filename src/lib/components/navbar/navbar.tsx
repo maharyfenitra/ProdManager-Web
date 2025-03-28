@@ -54,7 +54,7 @@ export function Navbar({links} : { links: LinkType[]}) {
   return (
     <nav className={styles.nav}>
       <div className={styles.navContainer}>
-        <span className={styles.logo}>ProManager</span>
+        <span className={styles.logo}>ProdManager</span>
         
         {/* Menu Desktop */}
         <ul className={styles.desktopMenu}>
