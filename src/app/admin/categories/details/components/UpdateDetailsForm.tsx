@@ -12,7 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import { useUpdateDetailsForm } from "./hooks/useUpdateDetaisForm";
+import { useUpdateDetailsForm } from "./hooks/useUpdateDetailsForm";
 
 export const UpdateDetailsForm = () => {
   const { handleSubmit, handleChange, back, handleSelectParentCategoryChange, collection, formData } =
