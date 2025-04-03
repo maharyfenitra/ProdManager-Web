@@ -1,6 +1,7 @@
 import { useFetch } from "./useFetch";
 import { useQuery } from "@tanstack/react-query";
 import { UseQueryResult } from "@tanstack/react-query";
+import { useToken } from "./useToken";
 
 export const useGenericQuery = <TData>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,6 +11,8 @@ export const useGenericQuery = <TData>(
   params = {},
   //refetchInterval = 5000
 ) => {
+  const { getToken } = useToken()
+  
   const sendRequest = useFetch();
   const query = useQuery({
     enabled: true,
@@ -21,7 +24,7 @@ export const useGenericQuery = <TData>(
         `http://localhost:8081${endpoint}`,
         params,
         {
-          //Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${getToken()}`
         }
       );
     },

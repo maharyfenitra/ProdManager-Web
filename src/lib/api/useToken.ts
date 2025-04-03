@@ -1,3 +1,20 @@
-export const useToken = () =>{
-    return "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNzQzNjMxODMzLCJpYXQiOjE3NDM1OTU4MzN9.Qxk4SjRRXdiXS-94KDQXPT9_yg87tPGTEOBgLQ4_amE"
-}
+export const useToken = () => {
+    const setToken = (token: string) => {
+      sessionStorage.setItem("token", token);
+    };
+  
+    const getToken = () => {
+      return sessionStorage.getItem("token");
+    };
+  
+    const removeToken = () => {
+      sessionStorage.removeItem("token");
+    };
+  
+    return {
+      setToken,
+      getToken,
+      removeToken,
+    };
+  };
+  

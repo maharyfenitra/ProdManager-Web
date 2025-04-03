@@ -8,26 +8,11 @@ import {
     VStack,
     Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
 
+import { useSigninForm } from "./hooks/useSigninForm";
 export const LoginForm = () => {
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-    });
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!formData.email || !formData.password) {
-            alert("Veuillez remplir tous les champs !");
-            return;
-        }
-        alert(`Connexion réussie pour ${formData.email}`);
-    };
+    
+    const { handleChange, formData, handleSubmit} = useSigninForm()
 
     return (
         <Box maxW="md" mx="auto" mt={8} p={6} borderWidth="1px" borderRadius="lg">
@@ -38,13 +23,12 @@ export const LoginForm = () => {
                 <VStack gap={4}>
                     {/* Email Field */}
                     <Field.Root>
-                        <Field.Label>Email</Field.Label>
+                        <Field.Label>User Name:</Field.Label>
                         <Input
-                            name="email"
-                            type="email"
-                            value={formData.email}
+                            name="userName"
+                            value={formData.userName}
                             onChange={handleChange}
-                            placeholder="Entrez votre email"
+                            placeholder="Entrez votre nom d'utilisateur"
                         />
                     </Field.Root>
 
