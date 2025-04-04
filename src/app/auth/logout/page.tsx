@@ -8,9 +8,10 @@ export default function Page() {
   const { push } = useRouter();
 
   useEffect(() => {
-    removeToken();         // effet de bord
-    push("/client");       // redirection
+    removeToken();
+    push("/client");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return null; // ou <div>Déconnexion en cours...</div>
+  return null;
 }
