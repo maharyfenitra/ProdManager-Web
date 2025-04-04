@@ -8,8 +8,13 @@ export default function Layout({ children }: { children: ReactNode }) {
     <>
       <MainLayout links={[
         {
-          label: "Product",
-          href: "#"
+          label: "Login",
+          href: "/auth/login"
+        },
+
+        {
+          label: "Signup",
+          href: "/auth/signup"
         },
         
       ]}>

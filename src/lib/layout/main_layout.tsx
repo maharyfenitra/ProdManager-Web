@@ -71,7 +71,7 @@ export function MainLayout({ children, links }: { children: ReactNode, links: Li
           </Flex>
 
           {/* Footer */}
-          <Box as="footer" bg="teal.500" p={4} height={{ base: "auto", md: "60px" }}>
+          <Box as="footer" bg="gray.100" p={4} height={{ base: "auto", md: "60px" }}>
             <Text color="white" textAlign="center">
               Footer
             </Text>

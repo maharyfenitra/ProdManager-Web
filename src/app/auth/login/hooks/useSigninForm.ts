@@ -1,42 +1,41 @@
 import { useSignin, useToken } from "@/lib/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const useSigninForm = () => {
-
-  const { mutate,data } = useSignin();
-  const { setToken } = useToken()
+  const { mutateAsync } = useSignin();
+  const { setToken } = useToken();
+  const { push } = useRouter()
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
   });
 
-  useEffect(()=>{
-   
-    if(data?.token){
-        setToken(data?.token)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.userName || !formData.password) {
       alert("Veuillez remplir tous les champs !");
       return;
     }
-    alert(`Connexion réussie pour ${formData.userName}`);
-    console.log(formData)
-    mutate(formData)
+    try {
+      const res = await mutateAsync(formData);
+      
+      if (res?.token) {
+        setToken(res?.token);
+        push("/client")
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
- 
 
   return {
     handleChange,
     handleSubmit,
-    formData
+    formData,
   };
 };

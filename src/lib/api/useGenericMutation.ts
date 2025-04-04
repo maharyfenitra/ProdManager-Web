@@ -8,6 +8,8 @@ export const useGenericMutation = <TVariables>(
 ) => {
   const sendRequest = useFetch();
   const { getToken } = useToken()
+  const token = getToken()
+  
   const mutation = useMutation({
     mutationFn: (variables: TVariables) => {
       return sendRequest(
@@ -15,7 +17,7 @@ export const useGenericMutation = <TVariables>(
         `http://localhost:8081${endpoint}`,
         variables,
         {
-          Authorization: `Bearer ${getToken()}`,
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         }
       )
         .then((data) => data?.data)
