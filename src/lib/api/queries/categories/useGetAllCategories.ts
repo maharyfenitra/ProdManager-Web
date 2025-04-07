@@ -1,7 +1,7 @@
 import { CategoryType } from "./type";
 import { useGenericQuery } from "../../useGenericQuery";
 
-export const useGetAllCategories = () => {
+export const useGetAllCategories = (page: number = 0) => {
   return useGenericQuery(
     (data) => {
       const { data: dataResponse, ...rest } = data;
@@ -11,8 +11,7 @@ export const useGetAllCategories = () => {
       };
     },
     "/api/admin/categories",
-    "list-of-categories"
+    "list-of-categories",
+    { page }
   );
 };
-
-

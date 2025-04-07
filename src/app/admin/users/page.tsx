@@ -3,12 +3,14 @@
 import { UserSearchForm } from "./components/UserSearchForm";
 import { Table, Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { useGetAllUsersQuery, UserType } from "@/lib/api";
+import { UserType } from "@/lib/api";
+import { useDashboard } from "./hooks/useDashboard";
+import { Pagination } from "@/lib/components";
 
 const Page = () => {
-  const { data } = useGetAllUsersQuery();
+  const { data, handlePageChange, pageFromUrl } = useDashboard();
   const router = useRouter();
-
+  console.log(data)
   return (
     <div>
       <UserSearchForm/>
@@ -24,8 +26,8 @@ const Page = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {data && data.length > 0 ? (
-            data.map((user: UserType) => (
+          {data?.content && data.content.length > 0 ? (
+            data.content.map((user: UserType) => (
               <Table.Row key={user.id}>
                 <Table.Cell>{user.id}</Table.Cell>
                 <Table.Cell>{`${user.firstName} ${user.lastName}`}</Table.Cell>
@@ -66,6 +68,11 @@ const Page = () => {
           )}
         </Table.Body>
       </Table.Root>
+      <Pagination
+        currentPage={pageFromUrl}
+        totalPages={data?.totalPages || 0}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

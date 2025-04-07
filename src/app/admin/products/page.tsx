@@ -1,16 +1,18 @@
 "use client";
 import { Table, Button } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import { useGetAllProducts, ProductType } from "@/lib/api/";
+import { ProductType } from "@/lib/api/";
 import { ProductSearchForm } from "./components/ProductSearchForm";
+import { useDashboard } from "./hooks/useDashboard";
+import { Pagination } from "@/lib/components";
 
 const Page = () => {
-  const { data } = useGetAllProducts();
+  const { data, handlePageChange, pageFromUrl } = useDashboard();
   const router = useRouter();
 
   return (
     <div>
-      <ProductSearchForm/>
+      <ProductSearchForm />
       <Table.Root>
         <Table.Header>
           <Table.Row>
@@ -21,8 +23,8 @@ const Page = () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {data && data.length > 0 ? (
-            data.map((product: ProductType) => (
+          {data?.content && data.content.length > 0 ? (
+            data.content.map((product: ProductType) => (
               <Table.Row key={product.id}>
                 <Table.Cell>{product.id}</Table.Cell>
                 <Table.Cell>{product.name}</Table.Cell>
@@ -61,6 +63,11 @@ const Page = () => {
           )}
         </Table.Body>
       </Table.Root>
+      <Pagination
+        currentPage={pageFromUrl}
+        totalPages={data?.totalPages || 0}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

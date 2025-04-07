@@ -1,6 +1,6 @@
 import { useGenericQuery } from "../../useGenericQuery";
 import { UserType } from "./type";
-export const useGetAllUsersQuery = () => {
+export const useGetAllUsersQuery = (page: number = 0) => {
   return useGenericQuery(
     (data) => {
       const { data: dataResponse, ...rest } = data;
@@ -10,6 +10,7 @@ export const useGetAllUsersQuery = () => {
       };
     },
     "/api/admin/users",
-    "list-of-users"
+    "list-of-users",
+    { page }
   );
 };

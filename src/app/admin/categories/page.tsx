@@ -1,17 +1,19 @@
 "use client";
 import { Button } from "@chakra-ui/react";
-import { useGetAllCategories, CategoryType } from "@/lib/api";
+import { CategoryType } from "@/lib/api";
 import { Table } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import { CategorySearchForm } from "./components/CategorySearchForm";
+import { Pagination } from "@/lib/components";
+import { useDashboard } from "./hooks/useDashboard";
+import { useRouter } from "next/navigation";
 const Page = () => {
-  const { data } = useGetAllCategories();
+  const { data, handlePageChange, pageFromUrl } = useDashboard();
   const { push } = useRouter();
 
   return (
     <>
-      <CategorySearchForm/>
-      {data && (
+      <CategorySearchForm />
+      {data?.content && (
         <Table.Root size="sm">
           <Table.Header>
             <Table.Row>
@@ -21,14 +23,17 @@ const Page = () => {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {data.map((category: CategoryType, index: number) => {
-              
+            {data?.content.map((category: CategoryType, index: number) => {
               return (
                 <Table.Row key={index}>
                   <Table.Cell>{category.name}</Table.Cell>
                   <Table.Cell>{category.description}</Table.Cell>
                   <Table.Cell textAlign="end">
-                    <Button onClick={() => push(`categories/details/${category.id}`)}>Détails</Button>
+                    <Button
+                      onClick={() => push(`categories/details/${category.id}`)}
+                    >
+                      Détails
+                    </Button>
                   </Table.Cell>
                 </Table.Row>
               );
@@ -36,6 +41,11 @@ const Page = () => {
           </Table.Body>
         </Table.Root>
       )}
+      <Pagination
+        currentPage={pageFromUrl}
+        totalPages={data?.totalPages || 0}
+        onPageChange={handlePageChange}
+      />
     </>
   );
 };
