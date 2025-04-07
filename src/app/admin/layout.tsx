@@ -24,6 +24,10 @@ export default function Layout({ children }: { children: ReactNode }) {
             href: "/admin/categories",
           },
           {
+            label: "User",
+            href: "/admin/users",
+          },
+          {
             label: "Logout",
             href: "/auth/logout",
           },
